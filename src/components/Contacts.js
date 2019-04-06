@@ -11,12 +11,21 @@ import Contact  from './Contact'
              {id:5, name:'Dominic Iweze', email:'ielemson@gmail.com', phone:'08067407355'}
          ]
      }
+
+     DeleteContact = (id)=>{
+    const {contacts}= this.state;
+    const newContact = contacts.filter(contact=>contact.id !==id);
+
+    this.setState({
+      contacts : newContact
+    });
+     }
   render() {
       const {contacts}= this.state;
     return (
       <React.Fragment>
    {contacts.map(contact=>(
-      <Contact contact={contact} key={contact.id}/>
+      <Contact contact={contact} key={contact.id} ClickedDeleteHandler={this.DeleteContact.bind(this,contact.id)}/>
    ))}
       </React.Fragment >
     )
